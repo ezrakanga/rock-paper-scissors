@@ -9,3 +9,14 @@ function getComputerChoice() {
     return 'scissors'
   }
 }
+
+// CREATING A FUNCTION TO DEFINE THE HUMAN CHOICE
+function getHumanChoice() {
+  let choice = prompt(`Enter 'rock', 'paper' or 'scissors':`).toLowerCase().trim();
+  if (choice === 'rock' || choice === 'paper' || choice === 'scissors') {
+    return choice;
+  } else {
+    alert(`You've entered an invalid choice`);
+    return getHumanChoice(); // Ask again if input is invalid
+  }
+}
