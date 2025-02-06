@@ -20,3 +20,8 @@ function getHumanChoice() {
     return getHumanChoice(); // Ask again if input is invalid
   }
 }
+
+
+//CREATING PLAYER SCORES VARIABLES
+let humanScore = 0;
+let computerScore = 0;
