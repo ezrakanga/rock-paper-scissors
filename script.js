@@ -77,6 +77,16 @@ function playGame() {
   scissors.textContent = 'scissors';
   div.appendChild(scissors);
 
+  // Adding event listeners
+  const buttons = document.querySelectorAll('button');  // selects all buttons
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const humanSelection = button.id;
+      const computerSelection = getComputerChoice();
+      playRound(humanSelection, computerSelection);
+    })
+  });
+
 }
 
 
