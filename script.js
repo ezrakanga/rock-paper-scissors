@@ -33,27 +33,35 @@ function playGame() {
   // CREATING A FUNCTION TO DEFINE PLAYING A SINGLE ROUND
   function playRound(humanChoice, computerChoice) {
 
-    //normalize humanChoice to lowercase
-    humanChoice = humanChoice.toLowerCase().trim();
-    console.log(`You chose ${humanChoice}, Computer chose ${computerChoice}`);
-
+    const choiceText = document.createElement('p');
+    choiceText.textContent = `You chose ${humanChoice}, Computer chose ${computerChoice}`;
+    results.appendChild(choiceText);
+    
     // Determining the winner
     if (humanChoice === computerChoice) {
-      console.log(`it's a tie! You both chose ${humanChoice}.`);
+      const tieText = document.createElement('p');
+      tieText.textContent = `it's a tie! You both chose ${humanChoice}`;
+      results.appendChild(tieText);
     } else if (
         (humanChoice === 'rock' && computerChoice === 'scissors') ||
         (humanChoice === 'scissors' && computerChoice === 'paper') ||
         (humanChoice === 'paper' && computerChoice === 'rock')
-    ) {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+      ) {
+        const winText = document.createElement('p');
+        winText.textContent = `You win! ${humanChoice} beats ${computerChoice}`;
+        results.appendChild(winText);
         humanScore++;
-    } else {
-      console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+      } else {
+      const loseText = document.createElement('p');
+      loseText.textContent = `You lose! ${computerChoice} beats ${humanChoice}`;
+      results.appendChild(loseText);
       computerScore++;
     }
 
     //Display scores
-    console.log(`Score - You: ${humanScore}, Computer: ${computerScore}`);
+    const scoreText = document.createElement('p');
+    scoreText.textContent = `Score - You: ${humanScore}, Computer: ${computerScore}`;
+    results.appendChild(scoreText);
   }
 
   // Creating buttons
@@ -86,6 +94,11 @@ function playGame() {
       playRound(humanSelection, computerSelection);
     })
   });
+
+  // Creating a div to display the results
+  const results = document.createElement('div');
+  results.setAttribute('id', 'results');
+  body.appendChild(results);
 
 }
 
