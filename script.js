@@ -56,25 +56,27 @@ function playGame() {
     console.log(`Score - You: ${humanScore}, Computer: ${computerScore}`);
   }
 
+  // Creating buttons
+  const body = document.querySelector('body');
 
-  // PLAY 5 ROUNDS
-  for (let i = 1; i <= 5; i++) {
-    console.log(`Round ${i}`);
-    let humanChoice = getHumanChoice();
-    let computerChoice = getComputerChoice();
-    playRound(humanChoice, computerChoice);
-  }
+  const div = document.createElement('div');
+  body.appendChild(div);
 
+  const rock = document.createElement('button');
+  rock.setAttribute('id', 'rock');
+  rock.textContent = 'rock';
+  div.appendChild(rock);
+  
+  const paper = document.createElement('button');
+  paper.setAttribute('id', 'paper');
+  paper.textContent = 'paper';
+  div.appendChild(paper);
+  
+  const scissors = document.createElement('button');
+  scissors.setAttribute('id', 'scissors');
+  scissors.textContent = 'scissors';
+  div.appendChild(scissors);
 
-  //DECLARE FINAL WINNER
-  console.log(`Game Over!`);
-  if (humanScore > computerScore) {
-    console.log(`Congratulations! You won the game.`);
-  } else if (humanScore < computerScore) {
-    console.log(`You lose! Better luck next time.`);
-  } else {
-    console.log(`It's a tie!`);
-  }
 }
 
 
