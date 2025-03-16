@@ -13,17 +13,6 @@ function playGame() {
     }
   }
 
-  // CREATING A FUNCTION TO DEFINE THE HUMAN CHOICE
-  function getHumanChoice() {
-    let choice = prompt(`Enter 'rock', 'paper' or 'scissors':`).toLowerCase().trim();
-    if (choice === 'rock' || choice === 'paper' || choice === 'scissors') {
-      return choice;
-    } else {
-      alert(`You've entered an invalid choice`);
-      return getHumanChoice(); // Ask again if input is invalid
-    }
-  }
-
 
   //CREATING PLAYER SCORES VARIABLES
   let humanScore = 0;
@@ -51,18 +40,16 @@ function playGame() {
         winText.textContent = `You win! ${humanChoice} beats ${computerChoice}`;
         results.appendChild(winText);
         humanScore++;
+        updateScore();
       } else {
       const loseText = document.createElement('p');
       loseText.textContent = `You lose! ${computerChoice} beats ${humanChoice}`;
       results.appendChild(loseText);
       computerScore++;
+      updateScore();
     }
-
-    //Display scores
-    const scoreText = document.createElement('p');
-    scoreText.textContent = `Score - You: ${humanScore}, Computer: ${computerScore}`;
-    results.appendChild(scoreText);
   }
+
 
   // Creating buttons
   const body = document.querySelector('body');
@@ -99,6 +86,33 @@ function playGame() {
   const results = document.createElement('div');
   results.setAttribute('id', 'results');
   body.appendChild(results);
+
+  // Score display
+  const scoreDisplay = document.createElement('p');
+  results.appendChild(scoreDisplay);
+
+  //Score updates
+  function updateScore() {
+    scoreDisplay.textContent = `Score - You: ${humanScore}, Computer: ${computerScore}`;
+    if (humanScore >= 5 || computerScore >= 5) {
+      declareWinner();
+    }
+  }
+  updateScore();
+
+  // Declare winner
+  function declareWinner() {
+    const gameOverMsg = document.createElement('h3');
+    results.appendChild(gameOverMsg);
+    if (humanScore > computerScore) {
+      gameOverMsg.textContent = `Gameover. You win!`
+    } else {
+      gameOverMsg.textContent = `Gameover. Computer wins!`
+    }
+
+    // Disable buttons
+    buttons.forEach(button => button.disabled = true);
+  }
 
 }
 
